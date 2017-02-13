@@ -15,7 +15,7 @@ Avant d'aller plus loin, je vous invite à consulter ces articles qui décrivent
 
 Le système LoRaWAN se compose : d'un objet connecté (_End-device_ ou _Node_ dans la terminologie LoRaWAN), d'un concentrateur (qui fait l'interface Lora / Internet, _Gateway_ dans la terminologie LoRaWAN), un réseau (celui de _The Things Network_, le fonctionnement y est décrit [ici](https://www.thethingsnetwork.org/wiki/Backend/Home)) qui reçoit les données et une application (ici _Node-Red_) qui exploite les données.
 
-![Shield Lora Raspberry Pi 3 & Pi Zero](https://psophometric.github.io/decouvrir-ttn-lorawan/images/LW-shield-lora-raspberry.jpg)
+![Shield Lora Raspberry Pi 3 & Pi Zero](https://psophometric.github.io/decouvrir-ttn-lorawan/LW-shield-lora-raspberry.jpg)
 
 ### Gateway
 
@@ -52,7 +52,7 @@ Il suffit de mettre les valeurs de DevAddr, NwkSKey et AppSKey générées depui
 
 Un Hello, world! c'est bien, mais pas très intéractif...
 
-![The Things Network - Hello world](https://psophometric.github.io/decouvrir-ttn-lorawan/images/LW-Helloworld_TTN.jpeg)
+![The Things Network - Hello world](https://psophometric.github.io/decouvrir-ttn-lorawan/LW-Helloworld_TTN.jpeg)
 
 Je n'ai pas de capteurs (température, humidité, accéléromètre, ...) mais comme beaucoup de monde, j'ai un smartphone !
 Et ce smartphone est équipé d'un GPS : ce qui peut être interressant ! Comment récupérer les données GPS du smartphone depuis le Raspberry ?
@@ -84,7 +84,7 @@ Sur le site _The Things Network,_ il existe une [documentation](https://www.thet
 Voir également [ce lien](https://github.com/TheThingsNetwork/workshops).
 Pour traiter le format des données reçues, après avoir créé l'application, dans l'onglet "Payload Functions", ajouter les lignes indiquées [sur le forum TTN](https://www.thethingsnetwork.org/forum/t/best-practices-when-sending-gps-location-data/1242/13)
 
-![The Things Network - Payload Functions](https://psophometric.github.io/decouvrir-ttn-lorawan/images/LW-TTN-PayloadF.png)
+![The Things Network - Payload Functions](https://psophometric.github.io/decouvrir-ttn-lorawan/LW-TTN-PayloadF.png)
 
 ### Application : Node-Red
 La dernière étape est l'installation de Node-Red.
@@ -98,18 +98,18 @@ Pour cela, il faut installer les compléments à Node-Red suivants :
 
 Ensuite, je réalise un _flow_ minimaliste :
 
-![Node-Red Flow](https://psophometric.github.io/decouvrir-ttn-lorawan/images/LW-NODERED_Flow.png)
+![Node-Red Flow](https://psophometric.github.io/decouvrir-ttn-lorawan/LW-NODERED_Flow.png)
 
 Et configure chaque élément :
 
 The Things Network : il suffit d'entrer le nom de l'application ainsi que l'Access Key que l'on récupère sur la console The Things Network.
-![Node-Red The Things Network](https://psophometric.github.io/decouvrir-ttn-lorawan/images/LW-NODERED_TTN.png)
+![Node-Red The Things Network](https://psophometric.github.io/decouvrir-ttn-lorawan/LW-NODERED_TTN.png)
 
 La fonction permet de créer trois champs dans le Payload du message : Name, Lat et Lon qui seront utilisés par Worldmap
-![Node-Red Function](https://psophometric.github.io/decouvrir-ttn-lorawan/images/LW-NODERED_FunctionPoint.png)
+![Node-Red Function](https://psophometric.github.io/decouvrir-ttn-lorawan/LW-NODERED_FunctionPoint.png)
 
 Worldmap : il suffit d'indiquer la latitude et longitude sur lesquelles sera centrée la carte à l'ouverture de la page.
-![Node-Red Web Worldmap](https://psophometric.github.io/decouvrir-ttn-lorawan/images/LW-NODERED_mymap.png)
+![Node-Red Web Worldmap](https://psophometric.github.io/decouvrir-ttn-lorawan/LW-NODERED_mymap.png)
 
 
 Pour commencer l'envoi des coordonnées GPS, il n'y a plus qu'à lancer depuis le Raspberry Pi Zero (Node) :
@@ -119,7 +119,7 @@ python nmea.py | sudo ./ttn-abp-gps
 ```
 
 Et à se connecter à Node-Red depuis un navigateur :
-![Node-Red Web Worldmap The Things Network](https://psophometric.github.io/decouvrir-ttn-lorawan/images/LW-TTN-ABP-GPS.jpeg)
+![Node-Red Web Worldmap The Things Network](https://psophometric.github.io/decouvrir-ttn-lorawan/LW-TTN-ABP-GPS.jpeg)
 
 En ajoutant quelques lignes de code, on peut personnaliser l'affichage avec des lignes, des couleurs en fonction du RSSI (niveau de puissance reçu du signal par la Gateway), ...
 ![Node-Red The Things Network Line iconColor](https://psophometric.github.io/decouvrir-ttn-lorawan/LW-NODERED_Line_iconColor.png)
