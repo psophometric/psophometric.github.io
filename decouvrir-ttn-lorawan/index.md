@@ -10,7 +10,9 @@ Il ne me reste qu'à commander deux modules radio Lora et à trouver des logicie
 Voici le récit de mes premiers pas dans le monde de l'_Internet des Objets._
 
 Avant d'aller plus loin, je vous invite à consulter ces articles qui décrivent le fonctionnement de LoRaWAN et la terminologie associée :
+
 - [A Closer Look at LoRaWAN and The Things Network, DesignSpark, en anglais](https://www.rs-online.com/designspark/a-closer-look-at-lorawan-and-the-things-network)
+
 - [De la technologie LoRa au réseau LoRaWAN, Frugal Prototype, en français](http://www.frugalprototype.com/technologie-lora-reseau-lorawan/)
 
 Le système LoRaWAN se compose : d'un objet connecté (_End-device_ ou _Node_ dans la terminologie LoRaWAN), d'un concentrateur (qui fait l'interface Lora / Internet, _Gateway_ dans la terminologie LoRaWAN), un réseau (celui de _The Things Network_, le fonctionnement y est décrit [ici](https://www.thethingsnetwork.org/wiki/Backend/Home)) qui reçoit les données et une application (ici _Node-Red_) qui exploite les données.
