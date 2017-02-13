@@ -2,7 +2,7 @@
 
 ### LoraWAN
 
-[Découvrir LoraWAN avec The Things Network et deux Raspberry](https://psophometric.github.io/decouvrir-ttn-lorawan/index.md)
+[Découvrir LoraWAN avec The Things Network et deux Raspberry](https://psophometric.github.io/decouvrir-ttn-lorawan/)
 
 
 
