@@ -31,11 +31,15 @@ Dans mon cas : `#define SERVER1 "40.114.249.243"    //  router.eu.thethings.netw
 Et de compiler avec `make`.
 Ou d'utiliser le [Fork disponible sur mon Github](https://github.com/psophometric/single_chan_pkt_fwd), qui contient la modification.
 
-A noter que si on utilise des Pin du GPIO différentes de celle indiqué dans le tutorial, il faut là aussi modifier dans main.cpp :
+A noter que si on utilise des Pin du GPIO différentes de celle indiquées dans le tutorial, il faut là aussi modifier dans main.cpp :
+
 ```
 // Uputronics - Raspberry connections
+
 int ssPin = 10;
+
 int dio0  = 6;
+
 int RST   = 0;
 ```
 
@@ -69,22 +73,26 @@ Dans le programme TTN-ABP j'ai juste ajouter un "cin" pour récupérer les coord
 
 Les coordonnées sont reçues sous la forme : ll.llll,L.LLLL (correspondant à latitude, Longitude).
 Il me reste deux fonctions à réaliser afin de pouvoir utiliser le programme :
+
 - dans le programme en C++ TTN-ABP : récupérer latitude et longitude dans des variables
+
 - et définir un format pour les transmettre (ascii? flottant? ...)
 
 En cherchant un peu sur Internet, j'ai pu réaliser ces modifications avec de simples copier-coller :
+
 - Ajout d'une fonction pour séparer les informations de latitude et longitude (split ','). [Fonction à retrouver ici](https://www.safaribooksonline.com/library/view/c-cookbook/0596007612/ch04s07.html)
+
 - Utilisation de nombres flottants [d'après une discussion sur le forum TTN](https://www.thethingsnetwork.org/forum/t/best-practices-when-sending-gps-location-data/1242/13)
 
 Ces copier-coller sont l'occasion de faire remarquer l'apport des contributions libres. En effet, sans connaissances approfondies en programmation, j'ai pu faire aboutir mon projet en réutilisant les fonctions écrites par d'autres.
 
-Bref, pour vous éviter tous ces copier-coller, j'apporte contribution en mettant à disposition le résultat sur le [Fork disponible sur mon Github](https://github.com/psophometric/arduino-lmic/tree/rpi/examples/raspi), on peut retrouver le résultat dans le dossier [TTN-ABP-GPS](https://github.com/psophometric/arduino-lmic/tree/rpi/examples/raspi/ttn-abp-gps).
+Bref, pour vous éviter tous ces copier-coller, j'apporte ma contribution en mettant à disposition le résultat sur le [Fork disponible sur mon Github](https://github.com/psophometric/arduino-lmic/tree/rpi/examples/raspi), on peut retrouver le résultat dans le dossier [TTN-ABP-GPS](https://github.com/psophometric/arduino-lmic/tree/rpi/examples/raspi/ttn-abp-gps).
 
 
 ### The Things network
 Sur le site _The Things Network,_ il existe une [documentation](https://www.thethingsnetwork.org/docs/) qui explique très bien comment créer une application.
 Voir également [ce lien](https://github.com/TheThingsNetwork/workshops).
-Pour traiter le format des données reçues, après avoir créé l'application, dans l'onglet "Payload Functions", ajouter les lignes indiquées [sur le forum TTN](https://www.thethingsnetwork.org/forum/t/best-practices-when-sending-gps-location-data/1242/13)
+Pour traiter le format des données reçues, après avoir créé l'application, dans l'onglet "Payload Functions", il faut ajouter les lignes indiquées [sur le forum TTN](https://www.thethingsnetwork.org/forum/t/best-practices-when-sending-gps-location-data/1242/13)
 
 ![The Things Network - Payload Functions](https://psophometric.github.io/decouvrir-ttn-lorawan/LW-TTN-PayloadF.png)
 
@@ -95,7 +103,9 @@ Voir [cet article en Français](http://www.projetsdiy.fr/node-red-decouverte-sur
 
 L'application que je souhaite créer doit récupérer les données depuis le serveur _The Things Network_ et afficher les points GPS sur une carte _OpenStreetMap._
 Pour cela, il faut installer les compléments à Node-Red suivants :
+
 - [node-red-contrib-ttn](http://flows.nodered.org/node/node-red-contrib-ttn)
+
 - [node-red-contrib-web-worldmap](http://flows.nodered.org/node/node-red-contrib-web-worldmap)
 
 Ensuite, je réalise un _flow_ minimaliste :
@@ -115,12 +125,14 @@ Worldmap : il suffit d'indiquer la latitude et longitude sur lesquelles sera cen
 
 
 Pour commencer l'envoi des coordonnées GPS, il n'y a plus qu'à lancer depuis le Raspberry Pi Zero (Node) :
+
 ```
 cd arduino-lmic/examples/raspi/ttn-abp-gps/
+
 python nmea.py | sudo ./ttn-abp-gps
 ```
 
-Et à se connecter à Node-Red depuis un navigateur :
+Et se connecter à Node-Red depuis un navigateur :
 ![Node-Red Web Worldmap The Things Network](https://psophometric.github.io/decouvrir-ttn-lorawan/LW-TTN-ABP-GPS.jpeg)
 
 En ajoutant quelques lignes de code, on peut personnaliser l'affichage avec des lignes, des couleurs en fonction du RSSI (niveau de puissance reçu du signal par la Gateway), ...
